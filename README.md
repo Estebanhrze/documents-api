@@ -1,3 +1,5 @@
+<img width="1400" height="514" alt="image" src="https://github.com/user-attachments/assets/a344fe87-a3a0-43a6-80dd-1cbfcca5bed7" />
+
 ## Sobre el proyecto
 
 Esta API fue creada para digitalizar y centralizar la gestión documental, reemplazando el proceso manual de búsqueda en archivadores y carpetas físicas por un sistema 
