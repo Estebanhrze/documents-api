@@ -1,0 +1,12 @@
+[project]
+name = "documents-api"
+version = "0.1.0"
+description = "documents for Soderal"
+requires-python = ">=3.10"
+
+dependencies = [
+   "fastapi[standard]"
+   ]
+
+[tool.fastapi]
+entrypoint = "main:app"
