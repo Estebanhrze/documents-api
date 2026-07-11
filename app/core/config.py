@@ -1,8 +1,18 @@
-import os
-from dotenv import load_dotenv
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-load_dotenv()
 
-APP_NAME = os.getenv("APP_NAME", "Documentex")
-APP_VERSION = os.getenv("APP_VERSION", "1.0.0")
-ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+class Settings(BaseSettings):
+    PROJECT_NAME: str
+    APP_VERSION: str
+    DEBUG: bool
+
+    SUPABASE_URL: str
+    SUPABASE_PUBLISHABLE_KEY: str
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore",
+    )
+
+
+settings = Settings()

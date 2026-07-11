@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 
 from app.api.router import api_router
-from app.core.config import APP_NAME, APP_VERSION
+from app.core.config import settings
 
 app = FastAPI(
-    title=APP_NAME,
-    version=APP_VERSION,
-    description="API para la gestión documental Documentex"
+    title=settings.PROJECT_NAME,
+    version="1.0.0",
 )
 
 app.include_router(api_router)
