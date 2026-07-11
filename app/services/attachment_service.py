@@ -7,15 +7,15 @@ class AttachmentService:
                 "document_id": 1,
                 "version_id": 1,
                 "file_name": "procedimiento.pdf",
-                "file_path": "/uploads/documents/procedimiento.pdf",
+                "file_path": "/uploads/procedimiento.pdf",
                 "file_type": "evidencia"
             },
             {
                 "id": 2,
                 "document_id": 2,
                 "version_id": 1,
-                "file_name": "manual_iso.pdf",
-                "file_path": "/uploads/documents/manual_iso.pdf",
+                "file_name": "manual.pdf",
+                "file_path": "/uploads/manual.pdf",
                 "file_type": "anexo"
             }
         ]
@@ -26,7 +26,7 @@ class AttachmentService:
             "document_id": 1,
             "version_id": 1,
             "file_name": "procedimiento.pdf",
-            "file_path": "/uploads/documents/procedimiento.pdf",
+            "file_path": "/uploads/procedimiento.pdf",
             "file_type": "evidencia"
         }
 
