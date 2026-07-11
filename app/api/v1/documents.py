@@ -1,8 +1,43 @@
 from fastapi import APIRouter
 
+from app.schemas.document import (
+    DocumentCreate,
+    DocumentUpdate,
+    DocumentResponse,
+)
+from app.services.document_service import DocumentService
+
 router = APIRouter()
 
+service = DocumentService()
 
-@router.get("/")
+
+@router.get("/", response_model=list[DocumentResponse])
 def get_documents():
-    return {"message": "Document"}
+    return service.get_all()
+
+
+@router.get("/{document_id}", response_model=DocumentResponse)
+def get_document(document_id: int):
+    return service.get_by_id(document_id)
+
+
+@router.post("/")
+def create_document(document: DocumentCreate):
+    return service.create(document.model_dump())
+
+
+@router.put("/{document_id}")
+def update_document(
+    document_id: int,
+    document: DocumentUpdate,
+):
+    return service.update(
+        document_id,
+        document.model_dump(exclude_unset=True)
+    )
+
+
+@router.delete("/{document_id}")
+def delete_document(document_id: int):
+    return service.delete(document_id)
