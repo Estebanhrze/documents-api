@@ -4,8 +4,8 @@ from app.schemas.base import BaseSchema
 
 
 class AuditLogCreate(BaseSchema):
-    user_id: int
-    document_id: int
+    user_id: str
+    document_id: str
     action: str
     from_status: Optional[str] = None
     to_status: Optional[str] = None
@@ -14,9 +14,9 @@ class AuditLogCreate(BaseSchema):
 
 
 class AuditLogResponse(BaseSchema):
-    id: int
-    user_id: int
-    document_id: int
+    id: str
+    user_id: str
+    document_id: str
     action: str
     from_status: Optional[str]
     to_status: Optional[str]

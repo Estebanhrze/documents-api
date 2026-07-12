@@ -17,7 +17,7 @@ def get_audit_logs():
 
 
 @router.get("/{audit_id}", response_model=AuditLogResponse)
-def get_audit_log(audit_id: int):
+def get_audit_log(audit_id: str):
     return service.get_by_id(audit_id)
 
 
@@ -27,5 +27,5 @@ def create_audit_log(audit: AuditLogCreate):
 
 
 @router.delete("/{audit_id}")
-def delete_audit_log(audit_id: int):
+def delete_audit_log(audit_id: str):
     return service.delete(audit_id)
