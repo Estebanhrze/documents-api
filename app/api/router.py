@@ -10,6 +10,7 @@ from app.api.v1 import (
     documents,
     attachments,
     audit,
+    reports,
 )
 
 api_router = APIRouter(prefix="/api/v1")
@@ -23,3 +24,4 @@ api_router.include_router(document_versions.router, prefix="/document-versions",
 api_router.include_router(attachments.router, prefix="/attachments", tags=["Attachments"])
 api_router.include_router(approval_flows.router, prefix="/approval-flows", tags=["Approval flows"])
 api_router.include_router(audit.router, prefix="/audit", tags=["Audit"])
+api_router.include_router(reports.router, prefix="/reports", tags=["Reports"])

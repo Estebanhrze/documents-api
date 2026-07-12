@@ -1,5 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
+from app.core.security import get_current_user
 from app.schemas.document import (
     DocumentCreate,
     DocumentResponse,
@@ -23,7 +24,10 @@ def get_document(document_id: str):
 
 
 @router.post("/")
-def create_document(document: DocumentCreate):
+def create_document(
+    document: DocumentCreate,
+    current_user: dict = Depends(get_current_user),
+):
     return service.create(document.model_dump())
 
 
@@ -31,6 +35,7 @@ def create_document(document: DocumentCreate):
 def update_document(
     document_id: str,
     document: DocumentUpdate,
+    current_user: dict = Depends(get_current_user),
 ):
     return service.update(
         document_id,
@@ -39,5 +44,8 @@ def update_document(
 
 
 @router.delete("/{document_id}")
-def delete_document(document_id: str):
+def delete_document(
+    document_id: str,
+    current_user: dict = Depends(get_current_user),
+):
     return service.delete(document_id)
