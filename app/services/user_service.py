@@ -1,50 +1,53 @@
+from app.core.database import supabase
+
+
 class UserService:
 
     def get_all(self):
-        return [
-            {
-                "id": 1,
-                "name": "Administrador",
-                "email": "admin@documentex.com",
-                "role_id": 1,
-                "mfa_enabled": False,
-                "is_active": True
-            },
-            {
-                "id": 2,
-                "name": "Juan Ect",
-                "email": "juan@documentex.com",
-                "role_id": 2,
-                "mfa_enabled": True,
-                "is_active": True
-            }
-        ]
+        response = (
+            supabase
+            .table("users")
+            .select("*")
+            .execute()
+        )
+        return response.data
 
-    def get_by_id(self, user_id: int):
-        return {
-            "id": user_id,
-            "name": "Administrador",
-            "email": "admin@documentex.com",
-            "role_id": 1,
-            "mfa_enabled": False,
-            "is_active": True
-        }
+    def get_by_id(self, user_id: str):
+        response = (
+            supabase
+            .table("users")
+            .select("*")
+            .eq("id", user_id)
+            .single()
+            .execute()
+        )
+        return response.data
 
-    def create(self, user):
-        return {
-            "message": "Usuario creado correctamente",
-            "data": user
-        }
+    def create(self, user: dict):
+        response = (
+            supabase
+            .table("users")
+            .insert(user)
+            .execute()
+        )
+        return response.data
 
-    def update(self, user_id: int, user):
-        return {
-            "message": "Usuario actualizado correctamente",
-            "id": user_id,
-            "data": user
-        }
+    def update(self, user_id: str, user: dict):
+        response = (
+            supabase
+            .table("users")
+            .update(user)
+            .eq("id", user_id)
+            .execute()
+        )
+        return response.data
 
-    def delete(self, user_id: int):
-        return {
-            "message": "Usuario eliminado correctamente",
-            "id": user_id
-        }
+    def delete(self, user_id: str):
+        response = (
+            supabase
+            .table("users")
+            .delete()
+            .eq("id", user_id)
+            .execute()
+        )
+        return response.data

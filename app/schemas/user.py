@@ -22,7 +22,7 @@ class UserUpdate(BaseSchema):
 
 
 class UserResponse(BaseSchema):
-    id: int
+    id: str
     name: str
     email: EmailStr
     role_id: int
