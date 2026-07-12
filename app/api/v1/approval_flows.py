@@ -18,7 +18,7 @@ def get_approval_flows():
 
 
 @router.get("/{approval_id}", response_model=ApprovalFlowResponse)
-def get_approval_flow(approval_id: int):
+def get_approval_flow(approval_id: str):
     return service.get_by_id(approval_id)
 
 
@@ -29,7 +29,7 @@ def create_approval_flow(approval: ApprovalFlowCreate):
 
 @router.put("/{approval_id}")
 def update_approval_flow(
-    approval_id: int,
+    approval_id: str,
     approval: ApprovalFlowUpdate,
 ):
     return service.update(
@@ -39,5 +39,5 @@ def update_approval_flow(
 
 
 @router.delete("/{approval_id}")
-def delete_approval_flow(approval_id: int):
+def delete_approval_flow(approval_id: str):
     return service.delete(approval_id)

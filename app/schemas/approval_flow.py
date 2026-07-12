@@ -4,10 +4,10 @@ from app.schemas.base import BaseSchema
 
 
 class ApprovalFlowCreate(BaseSchema):
-    document_id: int
-    version_id: int
+    document_id: str
+    version_id: str
     step_order: int
-    assigned_to: int
+    assigned_to: str
     action: str
 
 
@@ -17,11 +17,11 @@ class ApprovalFlowUpdate(BaseSchema):
 
 
 class ApprovalFlowResponse(BaseSchema):
-    id: int
-    document_id: int
-    version_id: int
+    id: str
+    document_id: str
+    version_id: str
     step_order: int
-    assigned_to: int
+    assigned_to: str
     action: str
     status: str
     comments: Optional[str]
