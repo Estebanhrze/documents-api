@@ -1,16 +1,27 @@
+from app.core.database import supabase
+
+
 class AuthService:
 
-    def login(self, credentials):
-        return {
-            "message": "Inicio de sesión exitoso",
-            "access_token": "fake-jwt-token",
-            "token_type": "bearer",
-            "user": {
-                "id": 1,
-                "name": "Administrador",
-                "email": "admin@documentex.com",
-                "role": "Administrador"
+    def login(self, credentials: dict):
+        response = (
+            supabase
+            .table("users")
+            .select("id, name, email, role_id")
+            .eq("email", credentials["email"])
+            .execute()
+        )
+
+        if not response.data:
+            return {
+                "message": "Usuario no encontrado"
             }
+
+        user = response.data[0]
+
+        return {
+            "message": "Usuario encontrado",
+            "user": user
         }
 
     def logout(self):
@@ -20,8 +31,8 @@ class AuthService:
 
     def me(self):
         return {
-            "id": 1,
-            "name": "Administrador",
-            "email": "admin@documentex.com",
-            "role": "Administrador"
+            "message": (
+                "Disponible cuando se implemente JWT "
+                "en la Fase 4."
+            )
         }
