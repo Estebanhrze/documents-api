@@ -18,7 +18,7 @@ def get_versions():
 
 
 @router.get("/{version_id}", response_model=DocumentVersionResponse)
-def get_version(version_id: int):
+def get_version(version_id: str):
     return service.get_by_id(version_id)
 
 
@@ -29,7 +29,7 @@ def create_version(version: DocumentVersionCreate):
 
 @router.put("/{version_id}")
 def update_version(
-    version_id: int,
+    version_id: str,
     version: DocumentVersionUpdate,
 ):
     return service.update(
@@ -39,5 +39,5 @@ def update_version(
 
 
 @router.delete("/{version_id}")
-def delete_version(version_id: int):
+def delete_version(version_id: str):
     return service.delete(version_id)

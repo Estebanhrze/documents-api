@@ -4,7 +4,7 @@ from app.schemas.base import BaseSchema
 
 
 class DocumentVersionCreate(BaseSchema):
-    document_id: int
+    document_id: str
     version_number: str
     file_path: str
     file_format: str
@@ -17,8 +17,8 @@ class DocumentVersionUpdate(BaseSchema):
 
 
 class DocumentVersionResponse(BaseSchema):
-    id: int
-    document_id: int
+    id: str
+    document_id: str
     version_number: str
     file_path: str
     file_format: str
