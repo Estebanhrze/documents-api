@@ -4,8 +4,8 @@ from app.schemas.base import BaseSchema
 
 
 class AttachmentCreate(BaseSchema):
-    document_id: int
-    version_id: Optional[int] = None
+    document_id: str
+    version_id: Optional[str] = None
     file_name: str
     file_path: str
     file_type: str
@@ -17,9 +17,9 @@ class AttachmentUpdate(BaseSchema):
 
 
 class AttachmentResponse(BaseSchema):
-    id: int
-    document_id: int
-    version_id: Optional[int]
+    id: str
+    document_id: str
+    version_id: Optional[str]
     file_name: str
     file_path: str
     file_type: str

@@ -1,50 +1,53 @@
+from app.core.database import supabase
+
+
 class AttachmentService:
 
     def get_all(self):
-        return [
-            {
-                "id": 1,
-                "document_id": 1,
-                "version_id": 1,
-                "file_name": "procedimiento.pdf",
-                "file_path": "/uploads/procedimiento.pdf",
-                "file_type": "evidencia"
-            },
-            {
-                "id": 2,
-                "document_id": 2,
-                "version_id": 1,
-                "file_name": "manual.pdf",
-                "file_path": "/uploads/manual.pdf",
-                "file_type": "anexo"
-            }
-        ]
+        return (
+            supabase
+            .table("attachments")
+            .select("*")
+            .execute()
+            .data
+        )
 
-    def get_by_id(self, attachment_id: int):
-        return {
-            "id": attachment_id,
-            "document_id": 1,
-            "version_id": 1,
-            "file_name": "procedimiento.pdf",
-            "file_path": "/uploads/procedimiento.pdf",
-            "file_type": "evidencia"
-        }
+    def get_by_id(self, attachment_id: str):
+        return (
+            supabase
+            .table("attachments")
+            .select("*")
+            .eq("id", attachment_id)
+            .single()
+            .execute()
+            .data
+        )
 
-    def create(self, attachment):
-        return {
-            "message": "Adjunto creado correctamente",
-            "data": attachment
-        }
+    def create(self, attachment: dict):
+        return (
+            supabase
+            .table("attachments")
+            .insert(attachment)
+            .execute()
+            .data
+        )
 
-    def update(self, attachment_id: int, attachment):
-        return {
-            "message": "Adjunto actualizado correctamente",
-            "id": attachment_id,
-            "data": attachment
-        }
+    def update(self, attachment_id: str, attachment: dict):
+        return (
+            supabase
+            .table("attachments")
+            .update(attachment)
+            .eq("id", attachment_id)
+            .execute()
+            .data
+        )
 
-    def delete(self, attachment_id: int):
-        return {
-            "message": "Adjunto eliminado correctamente",
-            "id": attachment_id
-        }
+    def delete(self, attachment_id: str):
+        return (
+            supabase
+            .table("attachments")
+            .delete()
+            .eq("id", attachment_id)
+            .execute()
+            .data
+        )

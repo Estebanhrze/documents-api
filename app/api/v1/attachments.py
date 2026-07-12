@@ -18,7 +18,7 @@ def get_attachments():
 
 
 @router.get("/{attachment_id}", response_model=AttachmentResponse)
-def get_attachment(attachment_id: int):
+def get_attachment(attachment_id: str):
     return service.get_by_id(attachment_id)
 
 
@@ -29,7 +29,7 @@ def create_attachment(attachment: AttachmentCreate):
 
 @router.put("/{attachment_id}")
 def update_attachment(
-    attachment_id: int,
+    attachment_id: str,
     attachment: AttachmentUpdate,
 ):
     return service.update(
@@ -39,5 +39,5 @@ def update_attachment(
 
 
 @router.delete("/{attachment_id}")
-def delete_attachment(attachment_id: int):
+def delete_attachment(attachment_id: str):
     return service.delete(attachment_id)
