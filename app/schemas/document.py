@@ -8,6 +8,7 @@ class DocumentCreate(BaseSchema):
     title: str
     classification: Optional[str] = None
     document_type_id: int
+    created_by: str
 
 
 class DocumentUpdate(BaseSchema):
@@ -17,10 +18,10 @@ class DocumentUpdate(BaseSchema):
 
 
 class DocumentResponse(BaseSchema):
-    id: int
+    id: str
     doc_number: str
     title: str
     classification: Optional[str]
     current_status: str
     document_type_id: int
-    created_by: int
+    created_by: str

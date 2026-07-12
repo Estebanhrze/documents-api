@@ -2,8 +2,8 @@ from fastapi import APIRouter
 
 from app.schemas.document import (
     DocumentCreate,
-    DocumentUpdate,
     DocumentResponse,
+    DocumentUpdate,
 )
 from app.services.document_service import DocumentService
 
@@ -18,7 +18,7 @@ def get_documents():
 
 
 @router.get("/{document_id}", response_model=DocumentResponse)
-def get_document(document_id: int):
+def get_document(document_id: str):
     return service.get_by_id(document_id)
 
 
@@ -29,7 +29,7 @@ def create_document(document: DocumentCreate):
 
 @router.put("/{document_id}")
 def update_document(
-    document_id: int,
+    document_id: str,
     document: DocumentUpdate,
 ):
     return service.update(
@@ -39,5 +39,5 @@ def update_document(
 
 
 @router.delete("/{document_id}")
-def delete_document(document_id: int):
+def delete_document(document_id: str):
     return service.delete(document_id)

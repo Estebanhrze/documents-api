@@ -1,53 +1,53 @@
+from app.core.database import supabase
+
+
 class DocumentService:
 
     def get_all(self):
-        return [
-            {
-                "id": 1,
-                "doc_number": "DOC-001",
-                "title": "Procedimiento de Calidad",
-                "classification": "Interno",
-                "document_type_id": 2,
-                "current_status": "Vigente",
-                "created_by": 1
-            },
-            {
-                "id": 2,
-                "doc_number": "DOC-002",
-                "title": "Manual ISO 17025",
-                "classification": "Confidencial",
-                "document_type_id": 1,
-                "current_status": "En Revisión",
-                "created_by": 2
-            }
-        ]
+        return (
+            supabase
+            .table("documents")
+            .select("*")
+            .execute()
+            .data
+        )
 
-    def get_by_id(self, document_id: int):
-        return {
-            "id": document_id,
-            "doc_number": "DOC-001",
-            "title": "Procedimiento de Calidad",
-            "classification": "Interno",
-            "document_type_id": 2,
-            "current_status": "Vigente",
-            "created_by": 1
-        }
+    def get_by_id(self, document_id: str):
+        return (
+            supabase
+            .table("documents")
+            .select("*")
+            .eq("id", document_id)
+            .single()
+            .execute()
+            .data
+        )
 
-    def create(self, document):
-        return {
-            "message": "Documento creado correctamente",
-            "data": document
-        }
+    def create(self, document: dict):
+        return (
+            supabase
+            .table("documents")
+            .insert(document)
+            .execute()
+            .data
+        )
 
-    def update(self, document_id: int, document):
-        return {
-            "message": "Documento actualizado correctamente",
-            "id": document_id,
-            "data": document
-        }
+    def update(self, document_id: str, document: dict):
+        return (
+            supabase
+            .table("documents")
+            .update(document)
+            .eq("id", document_id)
+            .execute()
+            .data
+        )
 
-    def delete(self, document_id: int):
-        return {
-            "message": "Documento eliminado correctamente",
-            "id": document_id
-        }
+    def delete(self, document_id: str):
+        return (
+            supabase
+            .table("documents")
+            .delete()
+            .eq("id", document_id)
+            .execute()
+            .data
+        )
