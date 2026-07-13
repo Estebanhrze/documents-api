@@ -11,7 +11,6 @@ class AuditService:
             .execute()
             .data
         )
-
     def get_by_id(self, audit_id: str):
         return (
             supabase

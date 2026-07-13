@@ -12,9 +12,10 @@ class ReportService:
         )
 
         counts = {}
-        for doc in response.data:
-            doc_status = doc["current_status"]
-            counts[doc_status] = counts.get(doc_status, 0) + 1
+
+        for document in response.data:
+            status = document["current_status"]
+            counts[status] = counts.get(status, 0) + 1
 
         return {
             "total": len(response.data),
@@ -29,6 +30,7 @@ class ReportService:
             .eq("status", "pending")
             .execute()
         )
+
         return {
             "total_pending": len(response.data),
             "items": response.data
@@ -39,10 +41,11 @@ class ReportService:
             supabase
             .table("audit_logs")
             .select("*")
-            .order("logged_at", desc=True)
+            .order("created_at", desc=True)
             .limit(50)
             .execute()
         )
+
         return {
             "total": len(response.data),
             "recent_logs": response.data
