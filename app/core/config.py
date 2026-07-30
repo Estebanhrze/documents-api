@@ -1,4 +1,4 @@
-﻿from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -9,6 +9,7 @@ class Settings(BaseSettings):
 
     SUPABASE_URL: str
     SUPABASE_PUBLISHABLE_KEY: str
+    SUPABASE_SERVICE_ROLE_KEY: str
     SUPABASE_STORAGE_BUCKET: str = "documents"
     MAX_UPLOAD_SIZE_MB: int = 10
 

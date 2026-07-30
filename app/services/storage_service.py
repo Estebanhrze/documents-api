@@ -1,11 +1,11 @@
-﻿from math import ceil
+from math import ceil
 from pathlib import Path
 from uuid import uuid4
 
 from fastapi import HTTPException, status
 
 from app.core.config import settings
-from app.core.database import supabase
+from app.core.database import supabase_storage
 
 
 class StorageService:
@@ -44,7 +44,7 @@ class StorageService:
         resolved_content_type = content_type or "application/octet-stream"
 
         try:
-            supabase.storage.from_(settings.SUPABASE_STORAGE_BUCKET).upload(
+            supabase_storage.storage.from_(settings.SUPABASE_STORAGE_BUCKET).upload(
                 path=file_path,
                 file=content,
                 file_options={
