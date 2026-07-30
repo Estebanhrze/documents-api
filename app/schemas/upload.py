@@ -1,4 +1,4 @@
-﻿from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field
 
 
 class UploadResponse(BaseModel):
@@ -6,3 +6,7 @@ class UploadResponse(BaseModel):
     file_name: str
     file_type: str
     file_size_kb: int
+
+
+class SignedUrlResponse(BaseModel):
+    signed_url: str = Field(description="Enlace temporal para descargar un archivo privado.")

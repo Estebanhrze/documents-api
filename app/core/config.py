@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     SUPABASE_URL: str
     SUPABASE_PUBLISHABLE_KEY: str
     SUPABASE_SERVICE_ROLE_KEY: str
+    DJANGO_API_SHARED_SECRET: str
     SUPABASE_STORAGE_BUCKET: str = "documents"
     MAX_UPLOAD_SIZE_MB: int = 10
 

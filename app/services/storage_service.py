@@ -64,3 +64,29 @@ class StorageService:
             "file_type": resolved_content_type,
             "file_size_kb": ceil(len(content) / 1024),
         }
+    def create_signed_url(self, *, file_path: str, expires_in: int = 300) -> str:
+        if not file_path.startswith("documents/"):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="La ruta solicitada no pertenece al almacenamiento documental.",
+            )
+
+        try:
+            response = supabase_storage.storage.from_(
+                settings.SUPABASE_STORAGE_BUCKET
+            ).create_signed_url(file_path, expires_in)
+        except Exception as exc:
+            raise HTTPException(
+                status_code=status.HTTP_502_BAD_GATEWAY,
+                detail="No fue posible preparar la descarga del archivo.",
+            ) from exc
+
+        signed_url = response.get("signedURL") or response.get("signed_url")
+        if not signed_url:
+            raise HTTPException(
+                status_code=status.HTTP_502_BAD_GATEWAY,
+                detail="El almacenamiento remoto no devolvió un enlace de descarga.",
+            )
+        if signed_url.startswith("/"):
+            signed_url = f"{settings.SUPABASE_URL.rstrip('/')}/storage/v1{signed_url}"
+        return signed_url
