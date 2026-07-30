@@ -22,3 +22,17 @@ La API centraliza el almacenamiento y la metadata de los documentos en una base 
 - Mantener trazabilidad (quién subió, modificó o accedió a un documento)
 - Reducir el riesgo de pérdida o extravío físico
 - Sentar la base para digitalizar procesos que hoy dependen de papel
+
+## Almacenamiento de archivos
+
+La API permite cargar y gestionar documentos mediante almacenamiento remoto en Supabase Storage.
+
+Las cargas requieren autenticación y se validan según el tamaño y los formatos permitidos configurados por el entorno.
+
+### Configuración
+
+Define las siguientes variables en tu archivo `.env`:
+
+```env
+SUPABASE_STORAGE_BUCKET=documents
+MAX_UPLOAD_SIZE_MB=10

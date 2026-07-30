@@ -1,4 +1,4 @@
-[project]
+﻿[project]
 name = "documents-api"
 version = "0.1.0"
 description = "documents"
@@ -8,8 +8,10 @@ dependencies = [
    "fastapi[standard]",
    "pydantic==2.13.4",
    "python-dotenv==1.2.2",
+   "python-multipart>=0.0.20,<1.0",
    "supabase==2.31.0"
  ]
 
 [tool.fastapi]
 entrypoint = "app.main:app"
+
